@@ -12,10 +12,10 @@ namespace Grafos
         public int ComputadorDois { get; set; }
         public int CustoOp { get; set; }
 
-        public CaminhoInfo(int ruaUm, int ruaDois)
+        public CaminhoInfo(int computadorUm, int computadorDois)
         {
-            ComputadorUm = ruaUm;
-            ComputadorDois = ruaDois;
+            ComputadorUm = computadorUm;
+            ComputadorDois = computadorDois;
         }
 
         public CaminhoInfo(int computadorUm, int computadorDois, int custoOp)
