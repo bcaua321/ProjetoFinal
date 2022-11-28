@@ -41,9 +41,9 @@ namespace ProjetoFinal
             };
 
 
-            DijkstraAlg dik = new DijkstraAlg(arestas, vertices, 1);
-            dik.Executar();
-            dik.PrintCaminho();
+            DijkstraAlg dijkstra = new DijkstraAlg(arestas, vertices, 1);
+            dijkstra.Executar();
+            dijkstra.PrintCaminho();
         }
     }
 }
