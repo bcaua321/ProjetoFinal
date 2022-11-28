@@ -4,7 +4,7 @@
 
 Primeiramente será necessário dar uma identificação para cada computador, dessa forma, poderemos implementar um algoritmo para encontrar o menor caminho.
 
-![Untitled (1).jpg](img/img-2.png)
+![Untitled (1).jpg](img/img-2.jpg)
 
 Com o menor caminho poderá ser possível determinar as ligações inúteis.
 
