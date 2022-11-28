@@ -5,21 +5,21 @@ namespace Grafos.Dijkstra
 {
     public class DijkstraAlg
     {
-        private IList<RuaInfo> Ruas { get; } // Ruas com tamanho
-        private IList<Caminho> Caminho { get; } // Resultado depois de percorrer todas as ruas 
-        private IList<Rua> RuasNaoVisitadas { get; } // Para ter o controle das ruas não visitados
-        public DijkstraAlg(List<RuaInfo> arestas, List<Rua> ruas, int ruaInicial)
+        private IList<CaminhoInfo> Caminhos { get; } // Arestas contendo os valores das conexões entre os computadores
+        public IList<Caminho> Caminho { get; } // Resultado depois de percorrer todas os computadores 
+        private IList<Computador> ComputadoresNaoVisitados { get; } // Para ter o controle dos computadores não visitados
+        public DijkstraAlg(List<CaminhoInfo> arestas, List<Computador> computadores, int computadorInicialId)
         {
-            Ruas = arestas;
-            RuasNaoVisitadas = ruas;
+            Caminhos = arestas;
+            ComputadoresNaoVisitados = computadores;
             Caminho = new List<Caminho>();
-            Preencher(ruaInicial);
+            Preencher(computadorInicialId);
         }
 
         public void Executar()
         {
             // Se não tive vertices não visitados, irá parar o algoritmo
-            if (RuasNaoVisitadas.Count == 0)
+            if (ComputadoresNaoVisitados.Count == 0)
                 return;
 
             var min = TakeMin(); // Irá pegar o menor valor que esteja nos vertices não visitados
@@ -28,10 +28,10 @@ namespace Grafos.Dijkstra
 
             foreach(var item in verticesAdj)
             {
-                var soma = min.Tamanho + item.Tamanho;
-                if(soma < PegarValorVertice(item.RuaDois)) 
+                var soma = min.Tamanho + item.CustoOp;
+                if(soma < PegarValorVertice(item.ComputadorDois)) 
                 {
-                   AtualizarValores(item.RuaDois, item.RuaUm, soma);   
+                   AtualizarValores(item.ComputadorDois, item.ComputadorUm, soma);   
                 }
             }
 
@@ -42,18 +42,18 @@ namespace Grafos.Dijkstra
         {
             var result = Caminho
             .FirstOrDefault(x => x.Tamanho < int.MaxValue &&
-            RuasNaoVisitadas.Any(v => v.Id == x.Id)); // Pega o primeiro valor menor que o simbolico e que esteja nos vertices não visitados
-            var vertice = RuasNaoVisitadas.Where(x => x.Id == result.Id).FirstOrDefault();
+            ComputadoresNaoVisitados.Any(v => v.Id == x.Id)); // Pega o primeiro valor menor que o simbolico e que esteja nos vertices não visitados
+            var vertice = ComputadoresNaoVisitados.Where(x => x.Id == result.Id).FirstOrDefault();
 
             // remove do vertices não visitados
-            RuasNaoVisitadas.Remove(vertice);
+            ComputadoresNaoVisitados.Remove(vertice);
 
             return result;
         }
 
-        public List<Grafos.RuaInfo> VerticesAdjacentes(int ruaUm)
+        public List<CaminhoInfo> VerticesAdjacentes(int computadorUm)
         {
-            return Ruas.Where(x => x.RuaUm == ruaUm).ToList();
+            return Caminhos.Where(x => x.ComputadorUm == computadorUm).ToList();
         }
 
         // Retorna o valor atribuido ao vertice
@@ -74,11 +74,11 @@ namespace Grafos.Dijkstra
         // Seta os valores após a instância da classe
         private void Preencher(int verticeInicial)
         {
-            foreach (var item in RuasNaoVisitadas)
+            foreach (var item in ComputadoresNaoVisitados)
             {
                 Caminho vertice = new Caminho
                 {
-                    Id = item.Id,
+                    ComputadorId = item.Id,
                     Tamanho = int.MaxValue,
                     Prev = null
                 };
@@ -91,20 +91,5 @@ namespace Grafos.Dijkstra
                 Caminho.Add(vertice);
             }
         }
-
-        /* Irá fazer o print do caminho com os valores
-        public void printPath()
-        {
-            foreach(var item in Result.OrderBy(x => x.Prev))
-            {
-                if (item.Prev == null)
-                {
-                    Console.WriteLine($"inicio => {item.Vertice}: {item.Valor}");
-                    continue;
-                }
-
-                Console.WriteLine($"{item.Prev} => {item.Vertice}: {item.Valor}");
-            }
-        } */
     }
 }
