@@ -1,4 +1,5 @@
 # Problema da rede de computadores
+- Trabalho final da disciplina de Teoria de Grafos
 
 ![Untitled](img/img-1.png)
 
@@ -8,7 +9,7 @@ Primeiramente será necessário dar uma identificação para cada computador, de
 
 Com o menor caminho poderá ser possível determinar as ligações inúteis.
 
-Dessa forma, já que se trata de um problema que possui poucos vértices, poderá ser aplicado o **Algoritmo de Dijkstra,** mesmo sendo um algoritmo guloso**.**
+Dessa forma, já que se trata de um problema que possui poucos vértices, poderá ser aplicado o **Algoritmo de Dijkstra,** mesmo sendo um algoritmo guloso.
 
 **Algoritmo**:
 
@@ -16,7 +17,7 @@ Dessa forma, já que se trata de um problema que possui poucos vértices, poder�
 
 **2-** Irá ser definido, de forma separadas, os vértices (computadores).
 
-**3-** Será Instanciado a classe que irá executar o algoritmo passando as arestas, vértices e o vértice para começar o algoritmo.
+**3-** Será instanciado a classe que irá executar o algoritmo passando as arestas, vértices e o vértice para começar o algoritmo.
 
 <img src="img/img-3.png" style="width:360px;"/>
 
